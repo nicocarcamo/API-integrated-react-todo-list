@@ -2,24 +2,28 @@ body {
   font-family: 'montserrat';
 }
 
-.todos-title {
-  font-size: 5.5em;
-  font-weight: 100;
-}
-
 .container {
   max-width: 600px;
 }
 
-.delete-button {
-  display: none;
-  font-size: 0.8rem;
+.todos-title {
+  font-size: 5.5em;
+  font-weight: 100;
 }
 
 .form-control::placeholder {
   color: rgba(192, 192, 192, 0.5);
 }
 
+.list-group {
+  box-shadow: 10px 10px 5px rgba(0,0,0,0.2);
+}
+
 .list-group-item:hover .delete-button {
   display: inline-block;
+}
+
+.delete-button {
+  display: none;
+  font-size: 0.8rem;
 }

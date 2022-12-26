@@ -10,9 +10,11 @@ function TodoList() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setTodos([...todos, todo]);
-        setTodo('');
-    };
+        if (todo.trim() !== '') {
+          setTodos([...todos, todo]);
+          setTodo('');
+        }
+    };    
 
     const handleDelete = (index) => {
         setTodos(todos.filter((_, i) => i !== index));
@@ -33,9 +35,9 @@ function TodoList() {
                     />
                 </div>
             </form>
-            <ul className="list-group mt-5">
+            <ul className="list-group my-5">
                 {todos.length === 0 ? (
-                    <li className="list-group-item text-center">No tasks, add a task</li>
+                    <li className="list-group-item text-center">No tasks, add a task.</li>
                 ) : (
                     todos.map((todo, index) => (
                         <li
