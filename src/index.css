@@ -16,6 +16,10 @@ body {
   font-size: 0.8rem;
 }
 
+.form-control::placeholder {
+  color: rgba(192, 192, 192, 0.5);
+}
+
 .list-group-item:hover .delete-button {
   display: inline-block;
 }
