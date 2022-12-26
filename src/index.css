@@ -1,0 +1,21 @@
+body {
+  font-family: 'montserrat';
+}
+
+.todos-title {
+  font-size: 5.5em;
+  font-weight: 100;
+}
+
+.container {
+  max-width: 600px;
+}
+
+.delete-button {
+  display: none;
+  font-size: 0.8rem;
+}
+
+.list-group-item:hover .delete-button {
+  display: inline-block;
+}
