@@ -142,11 +142,11 @@ function TodoList() {
 
             <form className="d-flex my-2" onSubmit={handleSubmitUser}>
                 <input className="form-control user-input" type="text" name="inputField" id="inputField" placeholder="Enter new username..." />
-                <button className="btn btn-secondary btn-sm ms-2" type="submit">Create User</button>
+                <button className="btn btn-secondary btn-sm ms-2" type="submit">Create New User</button>
             </form>
             <form className="d-flex my-2" onSubmit={handleGetUser}>
                 <input className="form-control user-input" type="text" name="inputField" id="inputField" placeholder="Enter username..." />
-                <button className="btn btn-secondary btn-sm ms-2" type="submit">Get User Todos</button>
+                <button className="btn btn-secondary btn-sm ms-2" type="submit">Get User Todos List</button>
             </form>
 
         </div>
