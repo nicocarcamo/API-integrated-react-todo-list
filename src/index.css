@@ -27,3 +27,11 @@ body {
   display: none;
   font-size: 0.8rem;
 }
+
+.user-input {
+  max-width: 280px;
+}
+
+.btn {
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+}
