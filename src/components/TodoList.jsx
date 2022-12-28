@@ -116,6 +116,14 @@ function TodoList() {
             setTodo('');
           } catch (error) {
             console.log(error);
+            toast.error("You Have To Fetch A User From The API First!", {
+                position: "top-left",
+                autoClose: 2500,
+                hideProgressBar: false,
+                draggable: true,
+                progress: undefined,
+                theme: "light"
+              });
           }
         }
       };
