@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 function TodoList() {
     const [todos, setTodos] = useState([]);
@@ -20,8 +23,27 @@ function TodoList() {
             },
             body: JSON.stringify({ todo: todo }),
         })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result) {
+                    toast.success('User Successfully Created!', {
+                        position: "top-left",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                } else {
+                    console.log('Error creating user:', data.message);
+                }
+            })
+            .catch(error => console.log(error));
         event.target.reset();
-    }
+    };
+
 
     const handleGetUser = (event) => {
         event.preventDefault();
@@ -101,7 +123,7 @@ function TodoList() {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container my-5">
             <h1 className="todos-title text-center mb-5">TODOS</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -148,6 +170,19 @@ function TodoList() {
                 <input className="form-control user-input" type="text" name="inputField" id="inputField" placeholder="Enter username..." />
                 <button className="btn btn-secondary btn-sm ms-2" type="submit">Get User Todos List</button>
             </form>
+            <ToastContainer
+                position="top-left"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+
 
         </div>
     );
