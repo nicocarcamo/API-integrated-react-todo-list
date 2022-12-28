@@ -28,16 +28,23 @@ function TodoList() {
                 if (data.result) {
                     toast.success('User Successfully Created!', {
                         position: "top-left",
-                        autoClose: 4000,
+                        autoClose: 2500,
                         hideProgressBar: false,
                         closeOnClick: true,
-                        pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
                         theme: "light",
                     });
                 } else {
-                    console.log('Error creating user:', data.message);
+                    toast.error("Couldn't Create. User Already Exists!", {
+                        position: "top-left",
+                        autoClose: 2500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 }
             })
             .catch(error => console.log(error));
@@ -51,13 +58,40 @@ function TodoList() {
         const inputFieldValue = event.target.elements.inputField.value;
         setUsername(inputFieldValue);
         fetch(`https://assets.breatheco.de/apis/fake/todos/user/${inputFieldValue}`)
-            .then(response => response.json())
-            .then(data => {
-                setTodos(data);
-            })
-            .catch(error => console.log(error));
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error(response.statusText);
+          })
+          .then(data => {
+            setTodos(data);
+            toast.success('User Successfully Fetched from the Server!', {
+              position: "top-left",
+              autoClose: 2500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light"
+            });
+          })
+          .catch(error => {
+            console.log(error);
+            toast.error("Couldn't fetch. User Doesn't Exist!", {
+              position: "top-left",
+              autoClose: 2500,
+              hideProgressBar: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light"
+            });
+          });
         event.target.reset();
-    };
+      };
+            
+      
+      
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -75,7 +109,15 @@ function TodoList() {
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
+                            toast.success('Todo List Updated Successfully!', {
+                                position: "top-left",
+                                autoClose: 1500,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light"
+                              });
                             setTodos(newTodos);
                             setTodo('');
                         })
@@ -98,7 +140,15 @@ function TodoList() {
             .then(response => response.json())
             .then(data => {
                 if (data.result) {
-                    console.log('Todo list updated successfully');
+                    toast.success('Todo List Updated Successfully!', {
+                        position: "top-left",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light"
+                      });
                 } else {
                     console.error('Error updating todo list:', data.message);
                 }
@@ -113,7 +163,15 @@ function TodoList() {
             .then(response => response.json())
             .then(data => {
                 if (data.result === 'ok') {
-                    console.log('User and todo list deleted successfully');
+                    toast.success('User Successfully Deleted!', {
+                        position: "top-left",
+                        autoClose: 2500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light"
+                      });
                     setTodos([]);
                 } else {
                     console.error('Error deleting user and todo list:', data.message);
@@ -172,14 +230,13 @@ function TodoList() {
             </form>
             <ToastContainer
                 position="top-left"
-                autoClose={4000}
+                autoClose={2500}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
                 rtl={false}
                 pauseOnFocusLoss
                 draggable
-                pauseOnHover
                 theme="light"
             />
 
